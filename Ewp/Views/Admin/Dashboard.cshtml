@@ -1,0 +1,60 @@
+﻿<h2 class="text-center">Admin Dashboard</h2>
+
+<div class="row text-center">
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white p-3">
+            <h4>Total Employees</h4>
+            <h2>@ViewBag.TotalEmployees</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white p-3">
+            <h4>Total Admins</h4>
+            <h2>@ViewBag.TotalAdmins</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-white p-3">
+            <h4>Total Managers</h4>
+            <h2>@ViewBag.TotalManagers</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white p-3">
+            <h4>Total Users</h4>
+            <h2>@ViewBag.TotalUsers</h2>
+        </div>
+    </div>
+
+</div>
+
+<br />
+
+<a href="/Admin/Index" class="btn btn-dark">Back to Employee List</a>
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: ['Employees', 'Admins', 'Managers', 'Users'],
+    datasets: [{
+    label: 'Count',
+    data: [
+    @ViewBag.TotalEmployees,
+    @ViewBag.TotalAdmins,
+    @ViewBag.TotalManagers,
+    @ViewBag.TotalUsers
+    ]
+    }]
+    }
+    });
+</script>
