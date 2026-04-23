@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Ewp.Models.Query>
+
+<h2>Employee Queries</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Reply</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var q in Model)
+        {
+            <tr>
+                <td>@q.Employee?.Name</td>
+                <td>@q.Subject</td>
+                <td>@q.Message</td>
+                <td>@q.Status</td>
+                <td>@q.Reply</td>
+                <td>
+                    <a asp-action="ReplyQuery" asp-route-id="@q.Id" class="btn btn-sm btn-success">
+                        Reply
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,24 @@
+﻿@model List<Ewp.Models.Salary>
+
+<h2>Salary Report</h2>
+
+<table border="1">
+    <tr>
+        <th>EmployeeId</th>
+        <th>Base Salary</th>
+        <th>Bonus</th>
+        <th>Deduction</th>
+        <th>Total Salary</th>
+    </tr>
+
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.EmployeeId</td>
+            <td>@s.BaseSalary</td>
+            <td>@s.Bonus</td>
+            <td>@s.Deduction</td>
+            <td>@s.TotalSalary</td>
+        </tr>
+    }
+</table>

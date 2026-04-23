@@ -1,0 +1,37 @@
+﻿@model List<Ewp.Models.Query>
+
+<h2>My Queries</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Reply</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var q in Model)
+            {
+                <tr>
+                    <td>@q.Subject</td>
+                    <td>@q.Message</td>
+                    <td>@q.Status</td>
+                    <td>@q.Reply</td>
+                    <td>@q.CreatedAt</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No Queries Found</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+﻿@model List<Ewp.Models.Employee>
+
+<h2>Employees</h2>
+
+<a href="/Admin/CreateEmployee" class="btn btn-success mb-3">
+    + Add Employee
+</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.Name</td>
+            <td>@e.Email</td>
+            <td>@e.Department?.Name</td>
+            <td>
+                <a href="/Admin/EditEmployee/@e.Id" class="btn btn-warning">Edit</a>
+                <a href="/Admin/DeleteEmployee/@e.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

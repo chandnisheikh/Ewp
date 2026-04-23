@@ -1,0 +1,42 @@
+﻿@model List<Ewp.Models.Expense>
+
+<h2>Manager - Expenses</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Employee</th>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var e in Model)
+        {
+            <tr>
+                <td>@(e.Employee?.Name ?? "No Employee")</td>
+                <td>@(e.Title ?? "N/A")</td>
+                <td>@e.Amount</td>
+                <td>@(e.Description ?? "N/A")</td>
+                <td>
+                    <span class="badge bg-@(e.Status == "Approved" ? "success" : e.Status == "Rejected" ? "danger" : "warning")">
+                        @(e.Status ?? "Pending")
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="ApproveExpense" asp-route-id="@e.Id" class="btn btn-success btn-sm">Approve</a>
+                    <a asp-action="RejectExpense" asp-route-id="@e.Id" class="btn btn-danger btn-sm">Reject</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6" class="text-center text-danger">No expenses found</td>
+        </tr>
+    }
+</table>

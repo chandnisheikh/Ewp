@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+<h2>Register</h2>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+    <div>
+        <label>Username</label>
+        <input name="Username" required />
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input name="Email" required />
+    </div>
+
+    <div>
+        <label>Password</label>
+        <input name="Password" type="password" required />
+    </div>
+
+    <div>
+        <label>Role</label>
+        <select name="Role">
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>Employee</option>
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Register</button>
+
+    <br /><br />
+
+    <a href="/Account/Login">Back to Login</a>
+
+</form>

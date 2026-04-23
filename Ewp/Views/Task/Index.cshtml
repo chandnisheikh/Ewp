@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Ewp.Models.TaskItem>
+
+<h2>Task List</h2>
+
+<table class="table">
+    <tr>
+        <th>Employee</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.Employee?.Name</td>
+            <td>@t.Title</td>
+            <td>@t.Status</td>
+            <td>
+                <a asp-controller="Task" asp-action="UpdateStatus"
+                       asp-route-id="@t.Id" asp-route-status="Completed"
+                       class="btn btn-success btn-sm">
+                    Complete
+                </a>
+
+                <a asp-controller="Task" asp-action="UpdateStatus"
+                       asp-route-id="@t.Id" asp-route-status="Pending"
+                       class="btn btn-warning btn-sm">
+                    Pending
+                </a>
+
+                <a asp-controller="Task" asp-action="Delete"
+                       asp-route-id="@t.Id"
+                       class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>

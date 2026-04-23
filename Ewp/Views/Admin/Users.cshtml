@@ -1,0 +1,32 @@
+﻿@model List<Ewp.Models.LoginHistory>
+
+<h2 class="mb-4">Login History (HR Audit)</h2>
+
+<table class="table table-bordered table-hover shadow">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Login Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>
+                    <span class="badge bg-primary">@item.Role</span>
+                </td>
+                <td>
+                    @(string.IsNullOrEmpty(item.DepartmentName) ? "-" : item.DepartmentName)
+                </td>
+                <td>@item.LoginTime.ToString("dd-MM-yyyy hh:mm tt")</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

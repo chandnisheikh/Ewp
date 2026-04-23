@@ -1,32 +1,55 @@
-using Microsoft.EntityFrameworkCore;
 using Ewp.Data;
+using Ewp.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ================= MVC =================
 builder.Services.AddControllersWithViews();
 
-// ✅ DB
+// ================= DB =================
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
-// ✅ Session
-builder.Services.AddSession();
+// ================= SESSION =================
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // important
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddHttpContextAccessor();
+
+// ================= CUSTOM SERVICES =================
+builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
+
+// ================= ERROR HANDLING =================
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// ================= ROUTING =================
 app.UseRouting();
 
-// ✅ Enable Session
+// ================= SESSION (MUST BE BEFORE AUTH) =================
 app.UseSession();
 
 app.UseAuthorization();
 
-// ✅ Default = Login page
+// ================= DEFAULT ROUTE =================
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}"
+);
 
 app.Run();

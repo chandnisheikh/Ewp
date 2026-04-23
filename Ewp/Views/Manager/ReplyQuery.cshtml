@@ -1,0 +1,24 @@
+﻿@model Ewp.Models.Query
+
+<h2>Reply to Query</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Subject</label>
+        <input class="form-control" value="@Model.Subject" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Message</label>
+        <textarea class="form-control" readonly>@Model.Message</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Reply</label>
+        <textarea name="reply" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-success">Send Reply</button>
+</form>

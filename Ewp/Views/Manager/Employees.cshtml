@@ -1,0 +1,27 @@
+﻿@model List<Ewp.Models.Employee>
+
+<h2>Employees</h2>
+
+<a asp-action="CreateEmployee" class="btn btn-primary">Add Employee</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var e in Model)
+    {
+        <tr>
+            <td>@e.Name</td>
+            <td>@e.Email</td>
+            <td>@e.Department?.Name</td>
+            <td>
+                <a asp-action="EditEmployee" asp-route-id="@e.Id">Edit</a> |
+                <a asp-action="DeleteEmployee" asp-route-id="@e.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

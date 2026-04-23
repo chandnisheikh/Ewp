@@ -1,0 +1,28 @@
+﻿@model List<Ewp.Models.TaskItem>
+
+<h2>Task Status</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Employee?.Name</td>
+                <td>@t.Title</td>
+                <td>@t.Description</td>
+                <td>@t.Status</td>
+                <td>@t.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>

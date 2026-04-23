@@ -1,0 +1,39 @@
+﻿@model List<Ewp.Models.TaskItem>
+
+<h2>Task Status</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Employee</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created At</th>
+    </tr>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var t in Model)
+        {
+            <tr>
+                <td>@(t.Employee?.Name ?? "No Employee")</td>
+                <td>@(t.Title ?? "N/A")</td>
+                <td>@(t.Description ?? "N/A")</td>
+                <td>
+                    <span class="badge bg-@(t.Status == "Completed" ? "success" : "warning")">
+                        @(t.Status ?? "Pending")
+                    </span>
+                </td>
+                <td>@t.CreatedAt.ToString("dd-MM-yyyy")</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-center text-danger">
+                No tasks found
+            </td>
+        </tr>
+    }
+</table>

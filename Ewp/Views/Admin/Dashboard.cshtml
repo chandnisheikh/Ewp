@@ -1,60 +1,75 @@
-﻿<h2 class="text-center">Admin Dashboard</h2>
+﻿<h2>Admin Dashboard</h2>
 
-<div class="row text-center">
+<div class="row mt-4">
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="card bg-primary text-white p-3">
-            <h4>Total Employees</h4>
-            <h2>@ViewBag.TotalEmployees</h2>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card bg-success text-white p-3">
-            <h4>Total Admins</h4>
-            <h2>@ViewBag.TotalAdmins</h2>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card bg-warning text-white p-3">
-            <h4>Total Managers</h4>
-            <h2>@ViewBag.TotalManagers</h2>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card bg-danger text-white p-3">
             <h4>Total Users</h4>
             <h2>@ViewBag.TotalUsers</h2>
         </div>
     </div>
 
+    <div class="col-md-4">
+        <div class="card bg-success text-white p-3">
+            <h4>Total Employees</h4>
+            <h2>@ViewBag.TotalEmployees</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-warning text-dark p-3">
+            <h4>Total Tasks</h4>
+            <h2>@ViewBag.TotalTasks</h2>
+        </div>
+    </div>
+
 </div>
 
-<br />
+<hr />
 
-<a href="/Admin/Index" class="btn btn-dark">Back to Employee List</a>
-<canvas id="myChart"></canvas>
+<h4>Task Overview</h4>
 
+<canvas id="taskChart" width="400" height="200"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-    var ctx = document.getElementById('myChart');
+    var users = parseInt('@ViewBag.TotalUsers') || 0;
+    var employees = parseInt('@ViewBag.TotalEmployees') || 0;
+    var tasks = parseInt('@ViewBag.TotalTasks') || 0;
 
-    new Chart(ctx, {
+    var ctx = document.getElementById('taskChart').getContext('2d');
+
+    var chart = new Chart(ctx, {
     type: 'bar',
     data: {
-    labels: ['Employees', 'Admins', 'Managers', 'Users'],
+    labels: ['Users', 'Employees', 'Tasks'],
     datasets: [{
-    label: 'Count',
-    data: [
-    @ViewBag.TotalEmployees,
-    @ViewBag.TotalAdmins,
-    @ViewBag.TotalManagers,
-    @ViewBag.TotalUsers
-    ]
+    label: 'System Data',
+    data: [users, employees, tasks]
     }]
     }
     });
 </script>
+
+<hr />
+
+<h4>Admin Actions</h4>
+
+<a asp-controller="Admin" asp-action="Employees" class="btn btn-primary">Employees</a>
+
+<a asp-controller="Admin" asp-action="Users" class="btn btn-secondary">Login History</a>
+<a asp-controller="Admin" asp-action="SystemReport" class="btn btn-info">System Report</a>
+
+
+<a asp-controller="Admin" asp-action="SalaryList" class="btn btn-success">View Salaries</a>
+
+<a asp-controller="Admin" asp-action="GenerateSalaryAll" class="btn btn-warning">Generate Salary</a>
+
+<a asp-controller="Admin" asp-action="Expenses" class="btn btn-danger">Expenses</a>
+
+<a asp-controller="Admin" asp-action="CreateEmployee" class="btn btn-dark">Add Employee</a>
+<a asp-controller="Admin" asp-action="Queries" class="btn btn-dark">
+    Employee Queries
+</a>
+<a asp-controller="Admin" asp-action="Queries" class="btn btn-dark">
+    All Queries
+</a>

@@ -1,0 +1,27 @@
+﻿@model Ewp.Models.Query
+
+<h2>Create Query</h2>
+
+<form asp-controller="Employee" asp-action="CreateQuery" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label>Subject</label>
+        <input asp-for="Subject" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Message</label>
+        <textarea asp-for="Message" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Submit Query
+    </button>
+
+    <a asp-controller="Employee" asp-action="MyQueries" class="btn btn-secondary">
+        Back
+    </a>
+
+</form>

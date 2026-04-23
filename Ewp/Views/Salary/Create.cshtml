@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Ewp.Models.Salary
+
+<h2>Generate Salary</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form method="post">
+
+    <label>Employee</label>
+    <select name="EmployeeId" class="form-control">
+        <option value="">-- Select Employee --</option>
+        @foreach (var e in ViewBag.Employees)
+        {
+            <option value="@e.Id">@e.Name</option>
+        }
+    </select>
+
+    <br />
+
+    <label>Base Salary</label>
+    <input type="number" name="BaseSalary" class="form-control" />
+
+    <br />
+
+    <label>Bonus</label>
+    <input type="number" name="Bonus" class="form-control" />
+
+    <br />
+
+    <label>Deduction</label>
+    <input type="number" name="Deduction" class="form-control" />
+
+    <br />
+
+    <button type="submit" class="btn btn-success">Generate Salary</button>
+
+</form>

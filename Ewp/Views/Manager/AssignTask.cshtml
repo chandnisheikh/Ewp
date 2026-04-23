@@ -1,0 +1,17 @@
+﻿@model Ewp.Models.TaskItem
+
+<h2>Assign Task</h2>
+
+<form asp-action="AssignTask" asp-controller="Manager" method="post">
+
+    <select asp-for="EmployeeId"
+            asp-items="@(new SelectList(ViewBag.Employees, "Id", "Name"))">
+    </select>
+
+    <input asp-for="Title" />
+
+    <textarea asp-for="Description"></textarea>
+
+    <button type="submit">Assign</button>
+
+</form>

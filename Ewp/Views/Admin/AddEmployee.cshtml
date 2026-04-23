@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Ewp.Models.Employee
+
+@{
+    var departments = ViewBag.Departments as List<Ewp.Models.Department>;
+}
+
+<h2>Add Employee</h2>
+
+<form asp-action="AddEmployee" method="post">
+
+    <!-- NAME -->
+    <div>
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <!-- EMAIL -->
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <!-- DEPARTMENT -->
+    <div>
+        <label>Department</label>
+
+        @if (departments == null)
+        {
+            <p>No departments found</p>
+        }
+        else
+        {
+            <select asp-for="DepartmentId" class="form-control mt-2">
+                <option value="">Select Department</option>
+                @foreach (var d in departments)
+                {
+                    <option value="@d.Id">@d.Name</option>
+                }
+            </select>
+        }
+    </div>
+
+    <br />
+
+    <button type="submit">Add Employee</button>
+
+</form>

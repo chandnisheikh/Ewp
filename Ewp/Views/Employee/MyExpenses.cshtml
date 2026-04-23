@@ -1,0 +1,27 @@
+﻿@model List<Ewp.Models.Expense>
+
+<h2>My Expenses</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.Title</td>
+                    <td>₹ @e.Amount</td>
+                    <td>@e.Status</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
